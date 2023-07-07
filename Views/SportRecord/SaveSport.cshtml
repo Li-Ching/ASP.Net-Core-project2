@@ -1,0 +1,107 @@
+﻿@model CCP_HW2_Project_A9210256.Models.SaveSportViewModel
+
+@{
+    ViewBag.Title = "儲存運動紀錄"; // 設定網頁的標題
+}
+
+
+@* 操作頁面的標題文字(Caption) *@
+<h2><span class="badge rounded-pill bg-danger">儲存運動紀錄操作頁面</span></h2>
+
+@*建立儲存運動紀錄表單*@
+<!-- asp-controller屬性為控制器名稱；asp-action屬性為控制器中的Action名稱；method屬性為表單的傳送方式 -->
+<form asp-controller="SportRecord" asp-action="SaveSport" method="post">
+    <table>
+        <tr>
+            <td>
+                <!-- 顯示time屬性的名稱 (asp-for設定綁定的屬性為time) -->
+                <b><label asp-for="time" class="text text-primary"></label></b>
+            </td>
+            <td>
+                <!-- 顯示time屬性的輸入框 (asp-for設定綁定的屬性為time) -->
+                <!-- style="width:10em;"設定輸入框的寬度，class屬性為錯誤訊息的CSS樣式(設為有表單控制外框) -->
+                <input asp-for="time" style="width:8em;">
+                <!-- 顯示time屬性的前端驗證錯誤訊息 (priceasp-validation-for設定綁定的屬性為time) -->
+                <!--class屬性為錯誤訊息的CSS樣式(設為紅色文字) -->
+                <span asp-validation-for="time" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- 顯示sporyType屬性的名稱 (asp-for設定綁定的屬性為sporyType) -->
+                <b><label asp-for="sportType" class="text text-primary"></label></b>
+            <td>
+                <!-- 顯示sporyType屬性的下拉式選單 (asp-for設定綁定的屬性為sporyType) -->
+                <!-- asp-items屬性為下拉式選單的選項清單物件 -->
+                <select asp-for="sportType" asp-items="@Model.sportTypeList" style="width:8em;">
+                    <option>選擇運動種類</option>
+                </select>
+                <!-- 顯示sporyType屬性的前端驗證錯誤訊息 (priceasp-validation-for設定綁定的屬性為sporyType) -->
+                <!--class屬性為錯誤訊息的CSS樣式(設為紅色文字) -->
+                <span asp-validation-for="time" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- 顯示heartbeat屬性的名稱 (asp-for設定綁定的屬性為heartbeat) -->
+                <b><label asp-for="heartbeat" class="text text-primary"></label></b>
+            </td>
+            <td>
+                <!-- 顯示heartbeat屬性的輸入框 (asp-for設定綁定的屬性為heartbeat) -->
+                <!-- style="width:10em;"設定輸入框的寬度，class屬性為錯誤訊息的CSS樣式(設為有表單控制外框) -->
+                <input asp-for="heartbeat" style="width:8em;">
+                <!-- 顯示heartbeat屬性的前端驗證錯誤訊息 (priceasp-validation-for設定綁定的屬性為heartbeat) -->
+                <!--class屬性為錯誤訊息的CSS樣式(設為紅色文字) -->
+                <span asp-validation-for="heartbeat" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- 顯示remark屬性的名稱 (asp-for設定綁定的屬性為remark) -->
+                <b><label asp-for="remark" class="text text-primary"></label></b>
+            </td>
+            <td>
+                <!-- 顯示remark屬性的輸入框 (asp-for設定綁定的屬性為remark) -->
+                <!-- style="width:8em;"設定輸入框的寬度，class屬性為錯誤訊息的CSS樣式(設為有表單控制外框) -->
+                <input type="text" asp-for="remark" style="width:8em;" placeholder="請輸入備註">
+                <!-- 顯示remark屬性的前端驗證錯誤訊息 (priceasp-validation-for設定綁定的屬性為remark) -->
+                <!--class屬性為錯誤訊息的CSS樣式(設為紅色文字) -->
+                <span asp-validation-for="remark" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- 顯示sportDate屬性的名稱 (asp-for設定綁定的屬性為sportDate) -->
+                <b><label asp-for="sportDate" class="text text-primary"></label></b>
+            </td>
+            <td>
+                <!-- 顯示sportDate屬性的輸入框 (asp-for設定綁定的屬性為sportDate) -->
+                <!-- style="width:8em;"設定輸入框的寬度，class屬性為錯誤訊息的CSS樣式(設為有表單控制外框) -->
+                <!--<input asp-for="sportDate" style="width:8em;" class="form-control">-->
+                <input type="date" asp-for="sportDate" style="width:8em;" class="form-control">
+                <script>
+                    document.getElementById('sportDate').valueAsDate = new Date(); //預設日期為今天
+                </script>
+                <!-- 顯示sportDate屬性的前端驗證錯誤訊息 (priceasp-validation-for設定綁定的屬性為sportDate) -->
+                <!--class屬性為錯誤訊息的CSS樣式(設為紅色文字) -->
+                <span asp-validation-for="sportDate" class="text-danger"></span>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" name="btnSaveSport" value="儲存" class="btn btn-success btn-sm">
+    <br />
+    @if (@TempData["ResultOfSaveSport"] == null)
+    {
+        <textarea style="height:150px;width:50%;max-width: 100%;"></textarea>
+    }
+    else
+    {
+        <textarea style="height:150px;width:50%;max-width: 100%;">@TempData["ResultOfSaveSport"]</textarea>
+    }
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

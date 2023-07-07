@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\CCP_HW2_Project_A9210256.props" />
+</Project>

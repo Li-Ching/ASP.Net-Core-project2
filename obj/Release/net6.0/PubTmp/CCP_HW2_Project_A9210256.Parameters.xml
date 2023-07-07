@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="default web site/A9210256/SportRecord" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\基礎雲端設計\\CCP_HW2_Project_A9210256\\obj\\Release\\net6\.0\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>
